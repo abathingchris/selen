@@ -3,6 +3,7 @@
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
+Vagrant.require_plugin "vagrant-vbguest"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -19,13 +20,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define :grid do |conf|
     conf.vm.hostname = "slnm-grid-#{hostname_rand}"
     conf.vm.network :private_network, ip: "192.168.50.4"
+    config.vm.network :forwarded_port, :host => 4444, :guest => 4444
+    conf.vm.provision "shell", path: "bootstrap.sh", args: "-t grid"
   end
 
   config.vm.define :node do |conf|
     conf.vm.hostname = "slnm-node-#{hostname_rand}"
     conf.vm.network :private_network, ip: "192.168.50.5"
+    conf.vm.provision "shell", path: "bootstrap.sh", args: "-t node"
   end
 
-  config.vm.provision "shell", path: "bootstrap.sh"
+  config.ssh.forward_x11 = true
 
 end
