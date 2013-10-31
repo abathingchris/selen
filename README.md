@@ -14,6 +14,7 @@ Setup
 selen requires the following:
 
 * [Vagrant v1.3.5+] - tool for automating environments
+* [vagrant-vbguest] - vagrant plugin for automated installation/update of guest additions
 * [Virtualbox v4.3+] - virtualization software
 
 Start the vagrant instances with
@@ -51,4 +52,5 @@ Release
 This project uses the [Git Flow](https://confluence.meltdev.com/display/DEV/Git+Flow) process for getting changes into the project.
 
   [Vagrant v1.3.5+]: http://downloads.vagrantup.com/tags/v1.3.5
+  [vagrant-vbguest]: https://github.com/dotless-de/vagrant-vbguest
   [VirtualBox v4.3+]: https://www.virtualbox.org/wiki/Downloads
