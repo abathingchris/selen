@@ -6,8 +6,8 @@
   "prioritizer": null,
   "capabilityMatcher": "org.openqa.grid.internal.utils.DefaultCapabilityMatcher",
   "throwOnCapabilityNotPresent": true,
-  "nodePolling": 5000,
-  "cleanUpCycle": 5000,
+  "nodePolling": 2500,
+  "cleanUpCycle": 2500,
   "timeout": 300000,
   "browserTimeout": 600000,
   "maxSession": 10
