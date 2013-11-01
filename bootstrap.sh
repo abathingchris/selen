@@ -16,6 +16,10 @@ if [[ $type = '' ]]; then
   printf "Usage: %s: [-t <grid|node>] \n" $0
 fi
 
+# add google repo and key
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list'
+
 # get apt updates
 apt-get update
 
@@ -34,8 +38,12 @@ ln -s selenium-server-standalone-2.37.0.jar selenium-server-standalone-current.j
 
 # type specific commands
 if [[ $type = 'node' ]]; then
-  apt-get install -y xvfb firefox
+  apt-get install -y xvfb firefox google-chrome-stable unzip
   cp /vagrant/conf/selenium/nodeConfig.json /opt/selenium/config.json
+  curl -O http://chromedriver.storage.googleapis.com/2.4/chromedriver_linux64.zip
+  unzip chromedriver_linux64.zip
+  mv chromedriver /usr/bin/chromedriver
+  chmod +x /usr/bin/chromedriver
   cp /vagrant/conf/upstart/selenium-node.conf /etc/init/
   start selenium-node
 else
