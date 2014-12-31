@@ -22,6 +22,6 @@
     "register": true,
     "cleanUpCycle": 2000,
     "timeout": 30000,
-    "maxSession": 10,
+    "maxSession": 10
   }
 }
